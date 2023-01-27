@@ -1,4 +1,6 @@
-from rest_framework.generics import CreateAPIView, ListCreateAPIView
+from rest_framework.generics import ListCreateAPIView
+from django.shortcuts import get_object_or_404
+from django.db.models import Sum
 from rest_framework.views import Request, Response, status
 from .serializers import ArquivoSerializer
 from .models import Arquivo
@@ -21,8 +23,10 @@ class ArquivoView(ListCreateAPIView):
         for linha in linhas:
             tipo = linha[0]
             data = linha[1:9]
-           
             valor = float(int(linha[9:19]) / 100)
+            if tipo == '2' or tipo == '3' or tipo == '9':
+                valor = valor * -1
+            
             cpf = linha[19:30]
             cartao = linha[30:42]
             hora = time(int(linha[42:48][0:2]), int(linha[42:48][2:4]), int(linha[42:48][4:6]))
@@ -55,8 +59,13 @@ class ArquivoView(ListCreateAPIView):
             
         Arquivo.objects.bulk_create(arquivos)
         super().create(request, *args, **kwargs)
-        return Response(dict_cnab, status.HTTP_201_CREATED)
+        list_nome_loja = Arquivo.objects.exclude(nome_loja=None).values('nome_loja', 'tipo', 'valor', 'hora').order_by('nome_loja')
+        # ipdb.set_trace()
+        list_nome_loja
+        if list_nome_loja[0]:
+            return Response(list_nome_loja, status.HTTP_201_CREATED)
+        
+    def get_queryset(self):
+        list_nome_loja = Arquivo.objects.values('nome_loja').annotate(saldo=Sum("valor")).order_by('nome_loja')
 
-    
-    
-
+        return list_nome_loja 
