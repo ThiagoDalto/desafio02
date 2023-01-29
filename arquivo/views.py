@@ -5,6 +5,7 @@ from rest_framework.views import Request, Response, status
 from .serializers import ArquivoSerializer
 from .models import Arquivo
 from datetime import datetime, time, date
+import ipdb
 
 
 class ArquivoView(ListCreateAPIView):
@@ -12,7 +13,7 @@ class ArquivoView(ListCreateAPIView):
 
     def create(self, request, *args, **kwargs):
         file = request.FILES["file"]
-
+        # ipdb.set_trace()
         file_content = file.read()
         linhas = file_content.decode().splitlines()
         arquivos = []
@@ -57,12 +58,12 @@ class ArquivoView(ListCreateAPIView):
         Arquivo.objects.bulk_create(arquivos)
         super().create(request, *args, **kwargs)
         list_nome_loja = Arquivo.objects.exclude(nome_loja=None).values('nome_loja', 'tipo', 'valor', 'hora').order_by('nome_loja')
-       
+        
         list_nome_loja
         if list_nome_loja[0]:
             return Response(list_nome_loja, status.HTTP_201_CREATED)
         
     def get_queryset(self):
-        list_nome_loja = Arquivo.objects.values('nome_loja').annotate(saldo=Sum("valor")).order_by('nome_loja')
+        list_nome_loja = Arquivo.objects.values('nome_loja').order_by('nome_loja')
 
         return list_nome_loja 
