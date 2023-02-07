@@ -5,7 +5,9 @@ import { useState } from "react";
 function ResponseM3I({ responses }){
     // [responseBJ, setResponseBJ] = useState([])
 
-    const mercado3IrmaosResponses = responses.filter((response) => response.nome_loja === "MERCEARIA 3 IRMÃOS")
+    const mercado3IrmaosResponses = responses.filter((response) => response.nome_loja === "MERCEARIA 3 IRMÃOS");
+    const saldo = mercado3IrmaosResponses.reduce((a, b) => b.valor + a, 0).toFixed(2)
+
 
     return(
         <>
@@ -17,6 +19,7 @@ function ResponseM3I({ responses }){
                             <span><div className="cell"><span className="tag">Tipo: </span><span className="values">{response.tipo}</span></div></span>
                             <span><div className="cell"><span className="tag">Valor: </span><span className="values">{response.valor}</span></div></span>
                             <span><div className="cell"><span className="tag">Hora: </span><span className="values">{response.hora}</span></div></span>        
+                            <span><div className="cell"><span className="tag">Saldo: </span><span className="values">{saldo}</span></div></span>        
                         </li>
                     ))
                 ) : (null)

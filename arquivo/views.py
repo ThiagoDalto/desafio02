@@ -57,8 +57,8 @@ class ArquivoView(ListCreateAPIView):
             
         Arquivo.objects.bulk_create(arquivos)
         super().create(request, *args, **kwargs)
-        list_nome_loja = Arquivo.objects.exclude(nome_loja=None).values('nome_loja', 'tipo', 'valor', 'hora').order_by('nome_loja')
-        
+        list_nome_loja = Arquivo.objects.exclude(nome_loja=None).values('nome_loja', 'tipo', 'valor', 'hora').order_by('nome_loja').distinct()
+        # ipdb.set_trace()
         list_nome_loja
         if list_nome_loja[0]:
             return Response(list_nome_loja, status.HTTP_201_CREATED)

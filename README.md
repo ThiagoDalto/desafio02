@@ -54,6 +54,7 @@ Dar exemplos
 
 ### 🔧 Instalação
 # Backend:
+
 1. Crie seu ambiente virtual:
 ```bash
 python -m venv venv
@@ -67,11 +68,28 @@ source venv/bin/activate
 # windows:
 .\venv\Scripts\activate
 ```
-3. Instalar o requirements:
+3. Para instalar as dependências do projeto:
 ```bash
-pip install requirements.txt
+pip install -r requirements.txt
 
 ```
+4. Criação do diretório **migrations**:
+```bash
+python manage.py makemigrations
+
+```
+5. Para persistir as alterações:
+```bash
+python manage.py migrate
+
+```
+6. Para rodar o servidor:
+```bash
+python manage.py runserver
+```
+
+
+
 # FrontEnd:
 Com NPM:
     npm create vite@latest
@@ -80,24 +98,155 @@ Com Yarn:
 Com PNPM:
     pnpm create vite
     
-E os seguintes comandos abaixo:
+E o seguintes comando abaixo no **diretório do projeto**:
 
-    # npm 6.x
-    npm create vite@latest my-vue-app --template vue
+```bash
+    yarn
 
-    # npm 7+, extra double-dash is needed:
-    npm create vite@latest my-vue-app -- --template vue
+```
 
-    # yarn
-    yarn create vite my-vue-app --template vue
+Para Rodar a aplicação:
+```bash
+    yarn dev
 
-    # pnpm
-    pnpm create vite my-vue-app --template vue 
+```
 
-
-## 📦 Implantação
-
-vo
+## 🛣️ Rotas
+O arquivo cnab.txt é enviado neste endereço:
+```bash
+localhost:8000/api/uploadfile/
+```
+e retornará: 
+```bash
+[
+	{
+		"nome_loja": "BAR DO JOÃO",
+		"tipo": "3",
+		"valor": -142.0,
+		"hora": "15:34:53"
+	},
+	{
+		"nome_loja": "BAR DO JOÃO",
+		"tipo": "2",
+		"valor": -112.0,
+		"hora": "23:42:34"
+	},
+	{
+		"nome_loja": "BAR DO JOÃO",
+		"tipo": "1",
+		"valor": 152.0,
+		"hora": "23:30:00"
+	},
+	{
+		"nome_loja": "LOJA DO Ó - FILIAL",
+		"tipo": "4",
+		"valor": 152.32,
+		"hora": "10:00:00"
+	},
+	{
+		"nome_loja": "LOJA DO Ó - MATRIZ",
+		"tipo": "5",
+		"valor": 132.0,
+		"hora": "14:56:07"
+	},
+	{
+		"nome_loja": "LOJA DO Ó - MATRIZ",
+		"tipo": "1",
+		"valor": 200.0,
+		"hora": "09:00:02"
+	},
+	{
+		"nome_loja": "LOJA DO Ó - MATRIZ",
+		"tipo": "9",
+		"valor": -102.0,
+		"hora": "00:00:00"
+	},
+	{
+		"nome_loja": "MERCADO DA AVENIDA",
+		"tipo": "3",
+		"valor": -122.0,
+		"hora": "17:27:12"
+	},
+	{
+		"nome_loja": "MERCADO DA AVENIDA",
+		"tipo": "2",
+		"valor": -107.0,
+		"hora": "12:33:33"
+	},
+	{
+		"nome_loja": "MERCADO DA AVENIDA",
+		"tipo": "2",
+		"valor": -502.0,
+		"hora": "23:12:33"
+	},
+	{
+		"nome_loja": "MERCADO DA AVENIDA",
+		"tipo": "5",
+		"valor": 802.0,
+		"hora": "14:56:07"
+	},
+	{
+		"nome_loja": "MERCADO DA AVENIDA",
+		"tipo": "8",
+		"valor": 102.03,
+		"hora": "12:32:22"
+	},
+	{
+		"nome_loja": "MERCADO DA AVENIDA",
+		"tipo": "4",
+		"valor": 506.17,
+		"hora": "10:00:00"
+	},
+	{
+		"nome_loja": "MERCADO DA AVENIDA",
+		"tipo": "8",
+		"valor": 2.0,
+		"hora": "12:32:22"
+	},
+	{
+		"nome_loja": "MERCADO DA AVENIDA",
+		"tipo": "3",
+		"valor": -192.0,
+		"hora": "17:27:12"
+	},
+	{
+		"nome_loja": "MERCEARIA 3 IRMÃOS",
+		"tipo": "3",
+		"valor": -602.0,
+		"hora": "17:27:12"
+	},
+	{
+		"nome_loja": "MERCEARIA 3 IRMÃOS",
+		"tipo": "2",
+		"valor": -102.0,
+		"hora": "23:12:33"
+	},
+	{
+		"nome_loja": "MERCEARIA 3 IRMÃOS",
+		"tipo": "3",
+		"valor": -6102.0,
+		"hora": "17:27:12"
+	},
+	{
+		"nome_loja": "MERCEARIA 3 IRMÃOS",
+		"tipo": "3",
+		"valor": -103.0,
+		"hora": "17:27:12"
+	},
+	{
+		"nome_loja": "MERCEARIA 3 IRMÃOS",
+		"tipo": "2",
+		"valor": -109.0,
+		"hora": "12:33:33"
+	},
+	{
+		"nome_loja": "MERCEARIA 3 IRMÃOS",
+		"tipo": "2",
+		"valor": -5.0,
+		"hora": "14:18:08"
+	}
+]
+```
 
 ## 🛠️ Construído com
 
